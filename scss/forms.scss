@@ -1,0 +1,135 @@
+$f-shadow: 0px 4px 4px #00000040;
+$f-border-c: rgba(29, 97, 228, 1);
+$f-label-c: rgba(0, 0, 0, 1);
+$f-primary-c: rgba(20, 20, 225, 1);
+$f-input-c: rgba(0, 0, 0, 1);
+$f-tab-c: gray;
+
+@mixin formText {
+  font-weight: 400;
+  font-size: 1rem;
+  color: $f-label-c;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  position: relative;
+  margin: auto;
+  padding-top: 5rem;
+  .form-box {
+    width: 80%;
+    max-width: 580px;
+    min-width: 320px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+    position: relative;
+    flex: auto;
+    border-radius: 10px;
+    border: 3px solid;
+    border-color: $f-border-c;
+    box-shadow: $f-shadow;
+  }
+  .form-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    position: relative;
+    align-self: stretch;
+    width: 100%;
+    flex: auto;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-color: $f-border-c;
+    .title-text {
+      position: relative;
+      width: fit-content;
+      white-space: nowrap;
+      font-weight: 600;
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+  }
+  .form-row {
+    position: relative;
+    width: 100%;
+    margin: auto;
+    .l-text {
+      width: 100%;
+      @include formText;
+      margin-bottom: 0.5rem;
+    }
+    .input-box {
+      box-sizing: border-box;
+      width: 100%;
+      padding: 10px 10px 10px 15px;
+      border-radius: 10px;
+      border: 1px solid;
+      border-color: $f-border-c;
+      box-shadow: inset $f-shadow;
+      font-weight: 400;
+      color: $f-input-c;
+      margin-bottom: 1rem;
+    }
+  }
+  .s-button {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 10px 10px 10px 10px;
+    position: relative;
+    flex: 0 0 auto;
+    background-color: $f-primary-c;
+    border-radius: 10px;
+    border: 1px solid;
+    box-shadow: 0px 14px 14px #0000008c;
+    border-color: $f-border-c;
+    color: white;
+  }
+  .tab-selector {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    background-color: $f-tab-c;
+    button {
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      width: calc(50% - 1rem);
+    }
+    .inactive-tab {
+      background-color: $f-tab-c;
+    }
+    .active-tab {
+      background-color: #ddd;
+    }
+  }
+
+  .form-content {
+    display: none;
+    width: 80%;
+    margin: auto;
+  }
+  .active-form {
+    display: block;
+  }
+}
+
+@media (min-width: 600px) {
+  .form-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    .input-container {
+      flex-basis: calc(50% - 10px);
+    }
+  }
+}

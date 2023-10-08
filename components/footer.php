@@ -4,4 +4,11 @@
         </p>
     </div>
 </footer>
+<?php
+if (isset($js))
+{
+    echo '
+<script src="' . $scripts_path . $page . '.js"></script>';
+}
+?>
 </body>
