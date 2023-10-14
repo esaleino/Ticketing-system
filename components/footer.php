@@ -7,8 +7,10 @@
 <?php
 if (isset($js))
 {
-    echo '
-<script src="' . $scripts_path . $page . '.js"></script>';
+    foreach ($js as $script)
+    {
+        echo '<script type="module" src="' . $Paths['scripts'] . $script . '"></script>';
+    }
 }
 ?>
 </body>

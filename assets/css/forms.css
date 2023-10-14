@@ -6,7 +6,7 @@
   padding: 10px;
   position: relative;
   margin: auto;
-  padding-top: 5rem;
+  padding-top: 0.5rem;
 }
 .form-container .form-box {
   width: 80%;
@@ -69,6 +69,50 @@
   color: rgb(0, 0, 0);
   margin-bottom: 1rem;
 }
+.form-container .form-row .invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+.form-container .form-row .error-field {
+  display: none;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  color: red;
+}
+.form-container .in-form-row {
+  position: relative;
+  width: 100%;
+  margin: auto;
+}
+.form-container .in-form-row .l-text {
+  width: 100%;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  margin-bottom: 0.5rem;
+}
+.form-container .in-form-row .input-box {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 10px 10px 15px;
+  border-radius: 10px;
+  border: 1px solid;
+  border-color: rgb(29, 97, 228);
+  box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.2509803922);
+  font-weight: 400;
+  color: rgb(0, 0, 0);
+  margin-bottom: 1rem;
+}
+.form-container .in-form-row .invalid {
+  box-shadow: 0 0 5px 1px red;
+}
+.form-container .in-form-row .error-field {
+  display: none;
+  font-weight: 400;
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  color: red;
+}
 .form-container .s-button {
   display: inline-flex;
   flex-direction: column;
@@ -111,7 +155,10 @@
   display: block;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 768px) {
+  .form-container {
+    padding-top: 5rem;
+  }
   .form-row {
     display: flex;
     flex-wrap: wrap;
@@ -119,6 +166,16 @@
   }
   .form-row .input-container {
     flex-basis: calc(50% - 10px);
+  }
+  .in-form-row {
+    display: flex;
+    justify-content: space-between;
+  }
+  .in-form-row .input-container {
+    flex-basis: calc(50% - 10px);
+    padding-left: 10px;
+    padding-right: 10px;
+    justify-content: center;
   }
 }
 
