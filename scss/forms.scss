@@ -47,6 +47,8 @@ $f-tab-c: gray;
   position: relative;
   margin: auto;
   padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
   .form-box {
     width: 80%;
     max-width: 580px;
@@ -65,6 +67,7 @@ $f-tab-c: gray;
   }
   .form-title {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 10px;
@@ -82,6 +85,12 @@ $f-tab-c: gray;
       font-weight: 600;
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
+    }
+    .status-error {
+      color: red;
+    }
+    .status-success {
+      color: green;
     }
   }
   .form-row {

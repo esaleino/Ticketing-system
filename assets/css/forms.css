@@ -7,6 +7,8 @@
   position: relative;
   margin: auto;
   padding-top: 0.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 .form-container .form-box {
   width: 80%;
@@ -26,6 +28,7 @@
 }
 .form-container .form-title {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
@@ -44,6 +47,12 @@
   font-weight: 600;
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+}
+.form-container .form-title .status-error {
+  color: red;
+}
+.form-container .form-title .status-success {
+  color: green;
 }
 .form-container .form-row {
   position: relative;

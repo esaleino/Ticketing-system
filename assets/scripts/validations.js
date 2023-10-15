@@ -44,6 +44,12 @@ var registerRules = {
     maxlength: 100,
     regex: /^[a-zA-Z]+$/,
   },
+  company_code: {
+    name: "Company's code",
+    required: true,
+    minlength: 3,
+    maxlength: 30,
+  },
 };
 
 export function reg_formValidation(data) {
@@ -57,28 +63,32 @@ export function reg_formValidation(data) {
     const rule = registerRules[key];
     const value = dataValues[key];
     const name = rule.name;
-    console.log(name, '\n', value, '\n', rule, '\n', key);
+    errors[key] = '';
     if (rule.required && !value) {
-      errors[key] = `${name} is required`;
+      errors[key] += `${name} is required</br>`;
     }
     if (rule.minlength && value.length < rule.minlength) {
-      errors[key] = `${name} should be at least ${rule.minlength} characters`;
+      errors[
+        key
+      ] += `${name} should be at least ${rule.minlength} characters</br>`;
     }
     if (rule.maxlength && value.length > rule.maxlength) {
-      errors[key] = `${name} should be at most ${rule.maxlength} characters`;
+      errors[
+        key
+      ] += `${name} should be at most ${rule.maxlength} characters</br>`;
     }
     if (rule.regex && !rule.regex.test(value)) {
-      errors[key] = `${name} is not valid`;
+      errors[key] += `${name} is not valid</br>`;
     }
   }
   if (dataValues.pass !== dataValues.cpass) {
-    errors['cpass'] = 'Passwords do not match';
+    errors['cpass'] += 'Passwords do not match</br>';
   }
-  console.log(Object.keys(errors).length);
-  if (Object.keys(errors).length === 0) {
-    return true;
-  } else {
+
+  if (Object.values(errors).some((error) => error.length > 0)) {
     return errors;
+  } else {
+    return true;
   }
 }
 export function reg_fieldValidation(field) {
@@ -87,20 +97,26 @@ export function reg_fieldValidation(field) {
   const name = rule.name;
   let msg = '';
   if (rule.required && !value) {
-    msg = `${name} is required`;
+    msg += `${name} is required</br>`;
   }
   if (rule.minlength && value.length < rule.minlength) {
-    msg = `${name} should be at least ${rule.minlength} characters`;
+    msg += `${name} should be at least ${rule.minlength} characters</br>`;
   }
   if (rule.maxlength && value.length > rule.maxlength) {
-    msg = `${name} should be at most ${rule.maxlength} characters`;
+    msg += `${name} should be at most ${rule.maxlength} characters</br>`;
   }
   if (rule.regex && !rule.regex.test(value)) {
-    msg = `${name} is not valid`;
+    msg += `${name} is not valid</br>`;
   }
-  if (field.getAttribute('id') === 'cpass') {
-    if (value !== document.getElementById('pass').value) {
-      msg = 'Passwords do not match';
+  if (
+    field.getAttribute('id') === 'cpass' ||
+    field.getAttribute('id') === 'pass'
+  ) {
+    if (
+      document.getElementById('pass').value !==
+      document.getElementById('cpass').value
+    ) {
+      msg += 'Passwords do not match</br>';
     }
   }
   return msg;

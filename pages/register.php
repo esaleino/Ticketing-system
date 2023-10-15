@@ -12,6 +12,7 @@ echo '<script>var registerPost = "' . $registerPost . '";</script>';
     <form class="form-box" id="registration-form">
         <div class="form-title">
             <div class="title-text">Registration form</div>
+            <div class="title-text " id="status-message" style="display:none">All fields are required.</div>
         </div>
         <div class="form-row">
             <div class="input-container">
@@ -58,11 +59,18 @@ echo '<script>var registerPost = "' . $registerPost . '";</script>';
                     required />
                 <label class="error-field" id="company_name_error" name="company_name_err"></label>
             </div>
+            <div class="input-container">
+                <label class="l-text" for="company_code">Company code</label>
+                <input class="input-box" placeholder="Company code" name="company_code" type="text" id="company_code"
+                    required />
+                <label class="error-field" id="company_code_error" name="company_code_err"></label>
+            </div>
         </div>
         <div class="form-submit">
             <button type="submit" class="s-button">Submit</button>
         </div>
     </form>
+    <button type="button" class="s-button" id="test_button">Test</button>
 </div>
 <?php
 

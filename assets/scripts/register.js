@@ -5,39 +5,49 @@ const errorFields = document.getElementsByClassName('error-field');
 const inputElements = form.querySelectorAll('input');
 
 form.addEventListener('submit', function (e) {
+  document.getElementById('status-message').style.display = 'none';
   e.preventDefault();
   const formData = new FormData(this);
   let valResult = reg_formValidation(formData);
+  console.log(valResult);
+  /* 
+  let valResult = true; */
   if (valResult === true) {
-    // Perform AJAX request
     fetch(registerPost, {
       method: 'POST',
       body: formData,
     })
-      .then((response) => {})
+      .then(async (response) => {
+        if (response.ok) {
+          response.json().then((data) => {
+            document.getElementById('status-message').innerHTML = data.message;
+            document
+              .getElementById('status-message')
+              .classList.remove('status-error');
+            document
+              .getElementById('status-message')
+              .classList.add('status-success');
+            document.getElementById('status-message').style.display = 'block';
+            form.reset();
+          });
+        } else {
+          let data = await response.json();
+          throw new Error(data.message);
+        }
+      })
       .catch((error) => {
-        console.error(error);
+        document.getElementById('status-message').innerHTML = error;
+        document
+          .getElementById('status-message')
+          .classList.remove('status-success');
+        document.getElementById('status-message').classList.add('status-error');
+        document.getElementById('status-message').style.display = 'block';
         // Handle any network or request errors here
       });
   } else {
     addErrorLabels(errorFields, valResult);
     return false;
   }
-
-  // Perform AJAX request
-  /* fetch(registration_handler, {
-      method: 'POST',
-      body: formData,
-    })
-      .then((response) => {
-        console.log(response);
-        // Handle the response from the server as needed
-        // For example, display a success message or handle errors
-      })
-      .catch((error) => {
-        console.error(error);
-        // Handle any network or request errors here
-      }); */
 });
 
 function addErrorLabels(fields, results) {
@@ -75,3 +85,22 @@ function onChange(event) {
 inputElements.forEach((input) => {
   input.addEventListener('change', onChange);
 });
+
+document
+  .getElementById('test_button')
+  .addEventListener('click', function test() {
+    const field_fname = document.getElementById('fname');
+    const field_lname = document.getElementById('lname');
+    const field_email = document.getElementById('email');
+    const field_pass = document.getElementById('pass');
+    const field_cpass = document.getElementById('cpass');
+    const field_phone = document.getElementById('phone');
+    const field_company = document.getElementById('company_name');
+    field_fname.value = 'John';
+    field_lname.value = 'Doe';
+    field_email.value = 'john@doemail.com';
+    field_pass.value = '123456789';
+    field_cpass.value = '123456789';
+    field_phone.value = '123456789';
+    field_company.value = 'CompanyName';
+  });
