@@ -3,6 +3,14 @@ const submitButton = document.getElementById('s-button');
 const form = document.getElementById('registration-form');
 const errorFields = document.getElementsByClassName('error-field');
 const inputElements = form.querySelectorAll('input');
+const companySelect = document.getElementById('company_name');
+
+companies.forEach((company) => {
+  const option = document.createElement('option');
+  option.value = company;
+  option.text = company;
+  companySelect.appendChild(option);
+});
 
 form.addEventListener('submit', function (e) {
   document.getElementById('status-message').style.display = 'none';
@@ -20,6 +28,7 @@ form.addEventListener('submit', function (e) {
       .then(async (response) => {
         if (response.ok) {
           response.json().then((data) => {
+            console.log(data.message);
             document.getElementById('status-message').innerHTML = data.message;
             document
               .getElementById('status-message')

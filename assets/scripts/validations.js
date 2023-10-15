@@ -42,7 +42,7 @@ var registerRules = {
     required: true,
     minlength: 3,
     maxlength: 100,
-    regex: /^[a-zA-Z]+$/,
+    regex: /^[a-zA-Z\s-_]+$/,
   },
   company_code: {
     name: "Company's code",
@@ -63,6 +63,7 @@ export function reg_formValidation(data) {
     const rule = registerRules[key];
     const value = dataValues[key];
     const name = rule.name;
+    console.log(rule, value, name);
     errors[key] = '';
     if (rule.required && !value) {
       errors[key] += `${name} is required</br>`;
@@ -95,6 +96,7 @@ export function reg_fieldValidation(field) {
   const rule = registerRules[field.getAttribute('id')];
   const value = field.value;
   const name = rule.name;
+  console.log(rule, value, name);
   let msg = '';
   if (rule.required && !value) {
     msg += `${name} is required</br>`;

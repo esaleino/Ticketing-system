@@ -1,6 +1,7 @@
 <?php
 include "../validations/registration-validation.php";
-
+include "../handlers/registration-handling.php";
+include "../db-connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
@@ -25,7 +26,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     }
     else
     {
-        $response['message'] = "Success!";
+        $conn = DbConnect::createConnection();
+        $msg = reg_handling($_POST, $conn);
+        if ($msg['error'])
+        {
+            http_response_code(400);
+        }
+        else
+        {
+            http_response_code(200);
+        }
+        $response['message'] = $msg['message'];
+        $conn->close();
     }
     echo json_encode($response);
 

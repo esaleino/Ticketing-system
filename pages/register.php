@@ -6,6 +6,15 @@ $js = array("register.js");
 include $components_path . "header.php";
 $registerPost = $components_path . "post-requests/registration-post.php";
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
+$serverName = $_SERVER['SERVER_NAME'];
+$isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443);
+$baseUrl = ($isSecure ? 'https://' : 'http://') . $serverName . '/tiketti-sovellus/components/get-requests/';
+$handleUrl = $baseUrl . 'companies-get.php';
+$ch = curl_init($handleUrl);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+$companies = json_decode(curl_exec($ch));
+curl_close($ch);
+echo '<script>var companies = ' . json_encode($companies) . ';</script>';
 ?>
 
 <div class="form-container">
@@ -55,8 +64,8 @@ echo '<script>var registerPost = "' . $registerPost . '";</script>';
         <div class="form-row">
             <div class="input-container">
                 <label class="l-text" for="company_name">Company</label>
-                <input class="input-box" placeholder="Company" name="company_name" type="text" id="company_name"
-                    required />
+                <select class="input-box" name="company_name" id="company_name" required>
+                </select>
                 <label class="error-field" id="company_name_error" name="company_name_err"></label>
             </div>
             <div class="input-container">
