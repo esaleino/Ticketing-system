@@ -1,5 +1,5 @@
 <?php
-include "../config.php";
+include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "register";
 $style_forms = true;
 $components_path = "../components/";
@@ -19,7 +19,7 @@ echo '<script>var companies = ' . json_encode($companies) . ';</script>';
     <form class="form-box" id="registration-form">
         <div class="form-title">
             <div class="title-text">Registration form</div>
-            <div class="title-text " id="status-message" style="display:none">All fields are required.</div>
+            <div class="title-text " id="status-message" style="display:none"></div>
         </div>
         <div class="form-row">
             <label class="l-text" for="username">Username</label>

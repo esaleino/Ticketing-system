@@ -14,13 +14,19 @@ else
 // set the URLS for components, pages and subfolders of components
 $components = $baseUrl . '/components/';
 $pages = $baseUrl . '/pages/';
+$assets = $baseUrl . '/assets/';
 $getRequests = $baseUrl . '/components/get-requests/';
 $postRequests = $baseUrl . '/components/post-requests/';
 
+// set paths for components, pages and subfolders of components
+$componentsPath = $_SERVER['DOCUMENT_ROOT'] . '/components/';
+$pagesPath = $_SERVER['DOCUMENT_ROOT'] . '/pages/';
+$assetsPath = $_SERVER['DOCUMENT_ROOT'] . '/assets/';
+
 // set asset URLS
-$css = $baseUrl . '/assets/css/';
-$js = $baseUrl . '/assets/scripts/';
-$img = $baseUrl . '/assets/images/';
+$css = $assets . 'css/';
+$js = $assets . 'scripts/';
+$img = $assets . 'images/';
 
 // define url constants
 define("COMPONENTS", $components);
@@ -32,11 +38,12 @@ define("JS", $js);
 define("IMG", $img);
 
 // define path constants
-define("COMPONENTS_PATH", $_SERVER['DOCUMENT_ROOT'] . '/components/');
-define("PAGES_PATH", $_SERVER['DOCUMENT_ROOT'] . '/pages/');
-define("GET_REQUESTS_PATH", $_SERVER['DOCUMENT_ROOT'] . '/components/get-requests/');
-define("POST_REQUESTS_PATH", $_SERVER['DOCUMENT_ROOT'] . '/components/post-requests/');
-define("CSS_PATH", $_SERVER['DOCUMENT_ROOT'] . '/assets/css/');
-define("JS_PATH", $_SERVER['DOCUMENT_ROOT'] . '/assets/scripts/');
-define("IMG_PATH", $_SERVER['DOCUMENT_ROOT'] . '/assets/images/');
+define("COMPONENTS_PATH", $componentsPath);
+define("PAGES_PATH", $pagesPath);
+define("GET_REQUESTS_PATH", $componentsPath . 'get-requests/');
+define("POST_REQUESTS_PATH", $componentsPath . 'post-requests/');
+define("CSS_PATH", $assetsPath . 'css/');
+define("JS_PATH", $assetsPath . 'scripts/');
+define("IMG_PATH", $assetsPath . 'images/');
+define("HANDLERS_PATH", $componentsPath . '/handlers/');
 ?>

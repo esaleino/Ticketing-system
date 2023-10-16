@@ -1,4 +1,4 @@
-var registerRules = {
+var fieldRules = {
   fname: {
     name: 'First name',
     required: true,
@@ -57,20 +57,31 @@ var registerRules = {
     maxlength: 30,
     regex: /^[a-zA-Z0-9_-]{3,30}$/,
   },
+  l_uname: {
+    name: 'Username',
+    minlength: 3,
+    maxlength: 30,
+    required: true,
+  },
+  l_pass: {
+    name: 'Password',
+    minlength: 3,
+    maxlength: 30,
+    required: true,
+  },
 };
 
-export function reg_formValidation(data) {
+export function formValidation(data) {
   let dataValues = {};
   for (const entry of data) {
     const [key, value] = entry;
     dataValues[key] = value;
   }
   let errors = {};
-  for (const key in registerRules) {
-    const rule = registerRules[key];
+  for (const key in dataValues) {
+    const rule = fieldRules[key];
     const value = dataValues[key];
     const name = rule.name;
-    console.log(rule, value, name);
     errors[key] = '';
     if (rule.required && !value) {
       errors[key] += `${name} is required</br>`;
@@ -92,15 +103,15 @@ export function reg_formValidation(data) {
   if (dataValues.pass !== dataValues.cpass) {
     errors['cpass'] += 'Passwords do not match</br>';
   }
-
+  console.log(errors);
   if (Object.values(errors).some((error) => error.length > 0)) {
     return errors;
   } else {
     return true;
   }
 }
-export function reg_fieldValidation(field) {
-  const rule = registerRules[field.getAttribute('id')];
+function fieldValidation(field) {
+  const rule = fieldRules[field.getAttribute('id')];
   const value = field.value;
   const name = rule.name;
   console.log(rule, value, name);
@@ -129,4 +140,34 @@ export function reg_fieldValidation(field) {
     }
   }
   return msg;
+}
+export function addErrorLabels(fields, results) {
+  for (const field of fields) {
+    const key = field.getAttribute('name').split('_err')[0];
+    if (results[key]) {
+      document.getElementById(key).classList.add('invalid');
+      field.innerHTML = results[key];
+      field.style.display = 'block';
+    } else {
+      document.getElementById(key).classList.remove('invalid');
+      field.innerHTML = '';
+      field.style.display = 'none';
+    }
+  }
+}
+export function onChange(event) {
+  const field = event.target;
+  let res = fieldValidation(field);
+  if (res.length > 0) {
+    document.getElementById(field.getAttribute('id') + '_error').innerHTML =
+      res;
+    document.getElementById(field.getAttribute('id') + '_error').style.display =
+      'block';
+    field.classList.add('invalid');
+  } else {
+    document.getElementById(field.getAttribute('id') + '_error').innerHTML = '';
+    document.getElementById(field.getAttribute('id') + '_error').style.display =
+      'none';
+    field.classList.remove('invalid');
+  }
 }

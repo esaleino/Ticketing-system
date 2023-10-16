@@ -1,6 +1,6 @@
 <?php
 include "../validations/registration-validation.php";
-include "../handlers/registration-handling.php";
+include "../handlers/registration-handler.php";
 include "../db-connect.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')

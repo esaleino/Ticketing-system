@@ -1,4 +1,4 @@
-import { reg_formValidation, reg_fieldValidation } from './validations.js';
+import { formValidation, addErrorLabels, onChange } from './validations.js';
 const submitButton = document.getElementById('s-button');
 const form = document.getElementById('registration-form');
 const errorFields = document.getElementsByClassName('error-field');
@@ -16,7 +16,7 @@ form.addEventListener('submit', function (e) {
   document.getElementById('status-message').style.display = 'none';
   e.preventDefault();
   const formData = new FormData(this);
-  let valResult = reg_formValidation(formData);
+  let valResult = formValidation(formData);
   console.log(valResult);
   /* 
   let valResult = true; */
@@ -58,38 +58,6 @@ form.addEventListener('submit', function (e) {
     return false;
   }
 });
-
-function addErrorLabels(fields, results) {
-  for (const field of fields) {
-    const key = field.getAttribute('name').split('_err')[0];
-    if (results[key]) {
-      document.getElementById(key).classList.add('invalid');
-      field.innerHTML = results[key];
-      field.style.display = 'block';
-    } else {
-      document.getElementById(key).classList.remove('invalid');
-      field.innerHTML = '';
-      field.style.display = 'none';
-    }
-  }
-}
-
-function onChange(event) {
-  const field = event.target;
-  let res = reg_fieldValidation(field);
-  if (res.length > 0) {
-    document.getElementById(field.getAttribute('id') + '_error').innerHTML =
-      res;
-    document.getElementById(field.getAttribute('id') + '_error').style.display =
-      'block';
-    field.classList.add('invalid');
-  } else {
-    document.getElementById(field.getAttribute('id') + '_error').innerHTML = '';
-    document.getElementById(field.getAttribute('id') + '_error').style.display =
-      'none';
-    field.classList.remove('invalid');
-  }
-}
 
 inputElements.forEach((input) => {
   input.addEventListener('change', onChange);

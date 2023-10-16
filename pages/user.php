@@ -1,6 +1,7 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "user";
 $loggedin = false;
-$components_path = "../components/";
-include $components_path . "header.php";
-include $components_path . "footer.php"; ?>
+$js = array("user.js");
+include COMPONENTS_PATH . "header.php";
+include COMPONENTS_PATH . "footer.php"; ?>
