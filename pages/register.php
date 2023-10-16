@@ -11,11 +11,7 @@ $handleUrl = GET_REQUESTS . 'companies-get.php';
 var_dump($handleUrl);
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-$dump = curl_exec($ch);
-$companies = json_decode($dump);
-var_dump($dump);
-var_dump($ch);
-var_dump($companies);
+$companies = json_decode(curl_exec($ch));
 curl_close($ch);
 echo '<script>var companies = ' . json_encode($companies) . ';</script>';
 ?>
