@@ -3,13 +3,13 @@
 if ($_SERVER['SERVER_NAME'] === '127.0.0.1')
 {
     $serverName = $_SERVER['SERVER_NAME'];
+    $baseUrl = 'http://' . $serverName;
 }
 else
 {
     $serverName = 'leinoes.azurewebsites.net';
+    $baseUrl = 'https://' . $serverName;
 }
-$isSecure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
-$baseUrl = ($isSecure ? 'https://' : 'http://') . $serverName;
 
 // set the URLS for components, pages and subfolders of components
 $components = $baseUrl . '/components/';
