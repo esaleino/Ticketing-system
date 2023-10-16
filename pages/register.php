@@ -13,6 +13,10 @@ var_dump(__DIR__);
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));
+if ($companies === null)
+{
+    var_dump('cURL Error: ' . curl_error($ch));
+}
 var_dump($companies);
 curl_close($ch);
 echo '<script>var companies = ' . json_encode($companies) . ';</script>';
