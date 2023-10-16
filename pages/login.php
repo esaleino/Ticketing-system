@@ -1,8 +1,7 @@
 <?php
 $style_forms = true;
 $page = "login";
-$components_path = "../components/";
-include $components_path . "header.php";
+include COMPONENTS_PATH . "header.php";
 ?>
 <div class="form-container">
     <form class="form-box">
