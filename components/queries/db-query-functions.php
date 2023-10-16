@@ -10,7 +10,7 @@ function verifyCompany($name, $code, $conn)
     $stmt->close();
     if ($result->num_rows > 0)
     {
-        return true;
+        return $result->fetch_assoc()['company_id'];
     }
     return false;
 }
@@ -28,10 +28,48 @@ function getCompanies($conn)
     }
     return $companies;
 }
-
-function registerUser($data, $conn)
+function registerUser($data, $conn, $c_id)
 {
-
+    global $register_user;
+    $stmt = $conn->prepare($register_user);
+    $hash = password_hash($data['pass'], PASSWORD_DEFAULT);
+    $fullName = $data['fname'] . " " . $data['lname'];
+    $stmt->bind_param("sssssi", $data['uname'], $data['email'], $fullName, $hash, $c_id);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0)
+    {
+        return true;
+    }
+    $stmt->close();
+    return false;
+}
+function findEmail($email, $conn)
+{
+    global $get_email;
+    $stmt = $conn->prepare($get_email);
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return true;
+    }
+    return false;
 }
 
+function findUser($user, $conn)
+{
+    global $get_user;
+    $stmt = $conn->prepare($get_user);
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return true;
+    }
+    return false;
+}
 ?>

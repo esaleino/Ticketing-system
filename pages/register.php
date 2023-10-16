@@ -24,6 +24,11 @@ echo '<script>var companies = ' . json_encode($companies) . ';</script>';
             <div class="title-text " id="status-message" style="display:none">All fields are required.</div>
         </div>
         <div class="form-row">
+            <label class="l-text" for="username">Username</label>
+            <input class="input-box" placeholder="Username" name="uname" type="text" id="uname" required />
+            <label class="error-field" id="uname_error" name="uname_err"></label>
+        </div>
+        <div class="form-row">
             <div class="input-container">
                 <label class="l-text" for="fname">First name</label>
                 <input class="input-box" placeholder="First name" name="fname" type="text" id="fname" required />

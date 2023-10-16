@@ -105,6 +105,10 @@ document
     const field_cpass = document.getElementById('cpass');
     const field_phone = document.getElementById('phone');
     const field_company = document.getElementById('company_name');
+    const field_code = document.getElementById('company_code');
+    const field_user = document.getElementById('uname');
+    field_user.value = 'johndoe';
+    field_code.value = 'root_toor';
     field_fname.value = 'John';
     field_lname.value = 'Doe';
     field_email.value = 'john@doemail.com';

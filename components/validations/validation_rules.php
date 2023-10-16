@@ -55,6 +55,14 @@ $registerRules = [
         "required" => true,
         "minlength" => 3,
         "maxlength" => 30,
+    ],
+    "uname" => [
+        "name" => "Username",
+        "required" => true,
+        "minlength" => 3,
+        "maxlength" => 30,
+        "regex" => ['/^[a-zA-Z0-9_-]{3,20}$/'
+        ]
     ]
  ];
 ?>
