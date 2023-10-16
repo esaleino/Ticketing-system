@@ -8,11 +8,11 @@ include $components_path . "header.php";
 $registerPost = POST_REQUESTS . 'registration-post.php';
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
 $handleUrl = GET_REQUESTS . 'companies-get.php';
+var_dump($handleUrl);
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));
 curl_close($ch);
-var_dump(COMPONENTS_PATH);
 echo '<script>var companies = ' . json_encode($companies) . ';</script>';
 ?>
 
