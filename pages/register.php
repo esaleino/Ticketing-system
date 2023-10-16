@@ -9,6 +9,7 @@ $registerPost = POST_REQUESTS . 'registration-post.php';
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
 $handleUrl = GET_REQUESTS . 'companies-get.php';
 var_dump($handleUrl);
+var_dump(__DIR__);
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));

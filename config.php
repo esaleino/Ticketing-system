@@ -1,12 +1,12 @@
 <?php
 // Path: config.php
-if (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
+if ($_SERVER['SERVER_NAME'] === '127.0.0.1')
 {
-    $serverName = $_SERVER['HTTP_X_FORWARDED_HOST'];
+    $serverName = $_SERVER['SERVER_NAME'];
 }
 else
 {
-    $serverName = $_SERVER['SERVER_NAME'];
+    $serverName = 'leinoes.azurewebsites.net';
 }
 $isSecure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
 $baseUrl = ($isSecure ? 'https://' : 'http://') . $serverName;
