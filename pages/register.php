@@ -14,11 +14,12 @@ error_reporting(E_ALL);
 var_dump($handleUrl);
 var_dump(__DIR__);
 $ch = curl_init($handleUrl);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch, CURLOPT_VERBOSE, true);
 $companies = json_decode(curl_exec($ch));
 if ($companies === null)
 {
-    error_log('cURL Error: ' . curl_error($ch));
+    error_log('cURL Error Code: ' . curl_errno($ch));
+    error_log('cURL Error Message: ' . curl_error($ch));
 }
 var_dump($companies);
 curl_close($ch);
