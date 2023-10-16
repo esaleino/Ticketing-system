@@ -1,7 +1,14 @@
 <?php
 // Path: config.php
-$serverName = $_SERVER['SERVER_NAME'];
-$isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443);
+if (isset($_SERVER['HTTP_X_FORWARDED_HOST']))
+{
+    $serverName = $_SERVER['HTTP_X_FORWARDED_HOST'];
+}
+else
+{
+    $serverName = $_SERVER['SERVER_NAME'];
+}
+$isSecure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') || $_SERVER['SERVER_PORT'] == 443;
 $baseUrl = ($isSecure ? 'https://' : 'http://') . $serverName;
 
 // set the URLS for components, pages and subfolders of components
