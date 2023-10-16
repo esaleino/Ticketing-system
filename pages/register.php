@@ -1,19 +1,18 @@
 <?php
+include "../config.php";
 $page = "register";
 $style_forms = true;
 $components_path = "../components/";
 $js = array("register.js");
 include $components_path . "header.php";
-$registerPost = $components_path . "post-requests/registration-post.php";
+$registerPost = POST_REQUESTS . 'registration-post.php';
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
-$serverName = $_SERVER['SERVER_NAME'];
-$isSecure = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443);
-$baseUrl = ($isSecure ? 'https://' : 'http://') . $serverName . '/tiketti-sovellus/components/get-requests/';
-$handleUrl = $baseUrl . 'companies-get.php';
+$handleUrl = GET_REQUESTS . 'companies-get.php';
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));
 curl_close($ch);
+var_dump(COMPONENTS_PATH);
 echo '<script>var companies = ' . json_encode($companies) . ';</script>';
 ?>
 
