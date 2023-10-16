@@ -15,7 +15,7 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));
 if ($companies === null)
 {
-    var_dump('cURL Error: ' . curl_error($ch));
+    error_log('cURL Error: ' . curl_error($ch));
 }
 var_dump($companies);
 curl_close($ch);
