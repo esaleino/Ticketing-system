@@ -1,5 +1,5 @@
 <?php
-include "../queries/db-query-functions.php";
+include QUERIES_PATH . "db-query-functions.php";
 function reg_handling($data, $conn)
 {
     $status = [];
@@ -17,7 +17,7 @@ function reg_handling($data, $conn)
     if ($status['email_exists'])
     {
         $errors['error'] = true;
-        $errors['message'] = "Username already exists";
+        $errors['message'] = "Email already exists";
         return $errors;
     }
 

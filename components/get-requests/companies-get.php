@@ -1,8 +1,9 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'GET')
 {
-    include "../db-connect.php";
-    include "../queries/db-query-functions.php";
+    include __DIR__ . "/../../config.php";
+    include COMPONENTS_PATH . "db-connect.php";
+    include QUERIES_PATH . "db-query-functions.php";
     $conn = DbConnect::createConnection();
     $data = getCompanies($conn);
     $conn->close();

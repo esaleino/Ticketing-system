@@ -2,6 +2,7 @@
 
 <head>
     <?php
+    session_start();
     // Set path relative to page
     $loggedin = false;
     $root = "";

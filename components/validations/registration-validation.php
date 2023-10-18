@@ -1,6 +1,5 @@
 <?php
-$validation_path = __DIR__;
-include __DIR__ . "/validation_rules.php";
+include VALIDATIONS_PATH . "validation_rules.php";
 function reg_validation($data)
 {
     // access the global variable $registerRules which is defined in validation_rules.php

@@ -158,6 +158,18 @@ export function addErrorLabels(fields, results) {
 export function onChange(event) {
   const field = event.target;
   let res = fieldValidation(field);
+  if (field.name === 'cpass' || field.name === 'pass') {
+    let cpass = document.getElementById('cpass').value;
+    let pass = document.getElementById('pass').value;
+    if (cpass === pass) {
+      document.getElementById('cpass_error').innerHTML = '';
+      document.getElementById('cpass_error').style.display = 'none';
+      document.getElementById('pass_error').innerHTML = '';
+      document.getElementById('pass_error').style.display = 'none';
+      document.getElementById('cpass').classList.remove('invalid');
+      document.getElementById('pass').classList.remove('invalid');
+    }
+  }
   if (res.length > 0) {
     document.getElementById(field.getAttribute('id') + '_error').innerHTML =
       res;

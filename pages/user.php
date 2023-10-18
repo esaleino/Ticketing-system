@@ -1,7 +1,23 @@
 <?php
+session_start();
 include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "user";
-$loggedin = false;
-$js = array("user.js");
-include COMPONENTS_PATH . "header.php";
-include COMPONENTS_PATH . "footer.php"; ?>
+var_dump($_SESSION);
+if ($_SESSION['loggedin'] == true)
+{
+    $user = $_SESSION['user'];
+    if ($user['role'] == "unassigned")
+    {
+        header("Location: " . PAGES . "error.php");
+    }
+    else
+    {
+        include PRIVATE_PATH . $user['role'] . ".php";
+    }
+}
+else
+{
+    header("Location: " . PAGES . "login.php");
+}
+/* include COMPONENTS_PATH . "header.php";
+include COMPONENTS_PATH . "footer.php"; */?>

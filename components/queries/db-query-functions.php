@@ -1,5 +1,5 @@
 <?php
-include __DIR__ . "/db-queries.php";
+include QUERIES_PATH . "db-queries.php";
 function verifyCompany($name, $code, $conn)
 {
     global $verify_company;
@@ -34,7 +34,7 @@ function registerUser($data, $conn, $c_id)
     $stmt = $conn->prepare($register_user);
     $hash = password_hash($data['pass'], PASSWORD_DEFAULT);
     $fullName = $data['fname'] . " " . $data['lname'];
-    $stmt->bind_param("sssssi", $data['uname'], $data['email'], $fullName, $hash, $c_id);
+    $stmt->bind_param("ssssi", $data['uname'], $data['email'], $fullName, $hash, $c_id);
     $stmt->execute();
     if ($stmt->affected_rows > 0)
     {
@@ -57,7 +57,6 @@ function findEmail($email, $conn)
     }
     return false;
 }
-
 function findUser($user, $conn)
 {
     global $get_user;
@@ -69,6 +68,38 @@ function findUser($user, $conn)
     if ($result->num_rows > 0)
     {
         return true;
+    }
+    return false;
+}
+function loginUser($data, $conn)
+{
+    global $post_login;
+    $stmt = $conn->prepare($post_login);
+    $stmt->bind_param("s", $data['l_uname']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        $hash = $result->fetch_assoc()['password_hash'];
+        if (password_verify($data['l_pass'], $hash))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+function getUser($user, $conn)
+{
+    global $get_user_details;
+    $stmt = $conn->prepare($get_user_details);
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return $result->fetch_assoc();
     }
     return false;
 }

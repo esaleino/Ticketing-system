@@ -16,7 +16,8 @@ form.addEventListener('submit', async (event) => {
       .then(async (response) => {
         if (response.ok) {
           response.json().then((data) => {
-            window.location.href = data.redirect;
+            window.location.href =
+              data.redirect + '?message=' + encodeURIComponent(data.message);
           });
         } else {
           let data = await response.json();

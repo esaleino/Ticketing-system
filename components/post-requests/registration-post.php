@@ -1,13 +1,12 @@
 <?php
-include "../validations/registration-validation.php";
-include "../handlers/registration-handler.php";
-include "../db-connect.php";
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
-    /* $root = '../../';
-    $path = __FILE__;
-    $response = ['message' => $path]; */
+    include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
+    include VALIDATIONS_PATH . "registration-validation.php";
+    include HANDLERS_PATH . "registration-handler.php";
+    include COMPONENTS_PATH . "db-connect.php";
     $errors = reg_validation($_POST);
     $hasErrors = false;
     foreach ($errors as $key)
