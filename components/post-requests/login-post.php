@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $_SESSION['loggedin'] = true;
         $_SESSION['user'] = $msg['user'];
+        session_set_cookie_params(900);
         $url = PAGES . 'user.php';
         http_response_code(200);
         $response = array(

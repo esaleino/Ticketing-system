@@ -59,7 +59,7 @@
     <nav>
         <div class="nav-row">
             <div class="left">
-                <div class="frame">
+                <div class="nav-frame">
                     <a class="nav-a" href="<?php echo $root ?>">
                         <img class="nav-img" src="<?php echo $Paths['img']; ?>home.svg" />
                     </a>
@@ -75,12 +75,12 @@
                 </ul>
             </div>
             <div class="mobile-nav">
-                <div class="frame">
+                <div class="nav-frame">
                     <a class="nav-a" href="<?php echo $user_page; ?>">
                         <img class="nav-img" src="<?php echo $Paths['img']; ?>user.svg" />
                     </a>
                 </div>
-                <div class="frame">
+                <div class="nav-frame">
                     <a class="nav-a" href="javascript:void(0);" onclick="toggleMobileMenu()"><img class="nav-img"
                             src="<?php echo $Paths['img']; ?>list.svg" /></a>
                 </div>

@@ -1,0 +1,56 @@
+@mixin mobile-menu-font {
+  font-size: 1rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  color: white;
+}
+@mixin formText {
+  font-weight: 400;
+  font-size: 1rem;
+  color: $f-label-c;
+}
+@mixin form-content {
+  .l-text {
+    width: 100%;
+    @include formText;
+    margin-bottom: 0.5rem;
+  }
+  .input-box {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px 10px 10px 15px;
+    border-radius: 10px;
+    border: 1px solid;
+    border-color: $f-border-c;
+    box-shadow: inset $f-shadow;
+    font-weight: 400;
+    color: $f-input-c;
+    margin-bottom: 1rem;
+  }
+  .invalid {
+    box-shadow: 0 0 5px 1px red;
+  }
+  .error-field {
+    display: none;
+    @include formText;
+    color: red;
+  }
+}
+@mixin nav-elements {
+  .nav-frame {
+    display: flex;
+    width: 55px;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: stretch;
+  }
+  .nav-img {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    filter: invert(100%);
+  }
+}

@@ -1,12 +1,6 @@
-$background-color-fh: #000080;
-$mobile-menu-border: 1px solid rgba(192, 192, 192, 0.80);
+@import 'variables';
 
-$font-color-fh: white;
-$font-color-bd: black;
-$hover-bg: #ddd;
-
-@mixin mobile-menu-font 
-{
+@mixin mobile-menu-font {
   font-size: 1rem;
   font-style: normal;
   font-weight: 400;
@@ -14,11 +8,10 @@ $hover-bg: #ddd;
   color: white;
 }
 
-
 body {
   padding: 0;
   margin: 0 auto;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 nav {
   .nav-row {
@@ -31,7 +24,7 @@ nav {
     background: $background-color-fh;
     color: $font-color-fh;
   }
-  .frame {
+  .nav-frame {
     display: flex;
     width: 55px;
     height: 100%;
@@ -39,7 +32,6 @@ nav {
     justify-content: center;
     position: relative;
     align-self: stretch;
-    
   }
   .left {
     display: flex;
@@ -64,11 +56,9 @@ nav {
         display: flex;
         align-items: center;
         white-space: nowrap;
-        
       }
     }
   }
-
 }
 .nav-img {
   position: relative;
@@ -86,7 +76,7 @@ nav {
   right: 0;
   z-index: 1;
   ul {
-  margin: 0;
+    margin: 0;
     list-style-type: none;
     li {
       width: 100%;

@@ -14,7 +14,7 @@ nav .nav-row {
   background: #000080;
   color: white;
 }
-nav .frame {
+nav .nav-frame {
   display: flex;
   width: 55px;
   height: 100%;

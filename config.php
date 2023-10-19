@@ -26,9 +26,10 @@ $assetsPath = $_SERVER['DOCUMENT_ROOT'] . '/assets/';
 // set asset URLS
 $css_url = $assets . 'css/';
 $js_url = $assets . 'scripts/';
-$img_url = $assets . 'images/';
+$img_url = $assets . 'img/';
 
 // define url constants
+define("INDEX", $baseUrl);
 define("COMPONENTS", $components);
 define("PAGES", $pages);
 define("GET_REQUESTS", $getRequests);

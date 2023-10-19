@@ -4,7 +4,12 @@ $style_forms = true;
 $page = "login";
 $js = array("login.js");
 include COMPONENTS_PATH . "header.php";
+if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true)
+{
+    header("Location: " . PAGES . "user.php");
+}
 echo '<script>var loginPost = "' . POST_REQUESTS . 'login-post.php";</script>';
+
 ?>
 <div class="form-container">
     <form class="form-box" id="login-form">
