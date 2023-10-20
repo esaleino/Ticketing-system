@@ -11,6 +11,7 @@ if ($_SESSION['loggedin'] == true)
     }
     else
     {
+        $js[] = "user.js";
         include COMPONENTS_PATH . "user-header.php";
         include ROLES_PATH . $user['role'] . ".php";
     }

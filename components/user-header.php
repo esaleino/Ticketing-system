@@ -4,11 +4,12 @@
     <?php
     echo '<link rel="stylesheet" href="' . CSS . 'usernav.css' . '" />';
     echo '<link rel="stylesheet" href="' . CSS . 'body.css' . '" />';
+    echo "<link rel='stylesheet' href='" . CSS . "user.css' />";
     $js[] = "usernav.js";
 
     $linksGeneric = [
         "linksGenericPublic" => [
-            "Index" => ['path' => PAGES . "index.php", 'img' => IMG . "home.svg"],
+            "Index" => ['path' => INDEX, 'img' => IMG . "home.svg"],
             "Contact" => ['path' => PAGES . "contact.php", 'img' => IMG . "contact.svg"],
         ],
         "linksGenericPrivate" => [
