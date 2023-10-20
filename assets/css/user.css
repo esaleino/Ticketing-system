@@ -1,4 +1,4 @@
-.content {
+.main-content {
   transition: 0.5s;
   background-color: lightcyan;
   overflow-y: auto;
@@ -8,11 +8,11 @@
   padding-left: 1rem;
   padding-right: 1rem;
 }
-.content h1 {
+.main-content h1 {
   margin: 0;
   padding: 0;
 }
-.content .dashboard {
+.main-content .dashboard {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,12 +23,12 @@
   /*     width: $dashboard-width; */
   margin: 0 auto;
 }
-.content .dashboard .options {
+.main-content .dashboard .options {
   display: flex;
   gap: 10px;
   margin-bottom: 20px;
 }
-.content .dashboard .options .option {
+.main-content .dashboard .options .option {
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
@@ -37,10 +37,10 @@
   cursor: pointer;
   transition: background-color 0.3s;
 }
-.content .dashboard .options .option:hover {
+.main-content .dashboard .options .option:hover {
   background-color: #0056b3;
 }
-.content .dashboard .content {
+.main-content .dashboard .content {
   width: 100%;
   min-height: 300px;
   background-color: #fff;

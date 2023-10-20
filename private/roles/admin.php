@@ -1,5 +1,5 @@
 <?php ?>
-<div class="content" id="main-content">
+<div class="main-content" id="main-content">
     <div class="dashboard">
         <div class="options">
             <div class="option">Add Company</div>

@@ -9,6 +9,11 @@ nav {
   position: relative;
   background-color: $background-color-fh;
   @include nav-elements;
+  p {
+    font-size: 1.25rem;
+    margin: auto;
+    padding: 0;
+  }
 }
 .nav-a {
   display: flex;

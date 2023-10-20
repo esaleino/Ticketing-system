@@ -48,7 +48,11 @@
         <div class="nav-frame">
             <a class="nav-a" href="javascript:void(0);" id="sidebar-button"><img class="nav-img"
                     src="<?php echo IMG; ?>list.svg" /></a>
+
         </div>
+        <p style="color: white">Welcome,
+            <?php echo $user['username'] ?>
+        </p>
         <div class="nav-frame">
             <a class="nav-a" href="<?php echo PAGES . 'logout.php' ?>"><img class="nav-img"
                     src="<?php echo IMG; ?>logout.svg" /></a>
@@ -60,6 +64,10 @@
     </nav>
     <div id="sidebar">
         <div class="desktop-sidebar">
+            <?php
+            $user = $_SESSION['user'];
+            ?>
+
             <?php
             foreach ($linksGeneric as $link)
             {
