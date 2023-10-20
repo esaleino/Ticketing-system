@@ -7,7 +7,7 @@ $js = array("register.js");
 include $components_path . "header.php";
 $registerPost = POST_REQUESTS . 'registration-post.php';
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
-$handleUrl = GET_REQUESTS . 'companies-get.php';
+$handleUrl = GET_REQUESTS . 'companies-get.php?api_key=' . getenv('API_KEY_ADMIN');
 $ch = curl_init($handleUrl);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 $companies = json_decode(curl_exec($ch));

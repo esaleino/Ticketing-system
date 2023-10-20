@@ -2,7 +2,7 @@ body {
   padding: 0;
   margin: 0 auto;
   font-family: "Open Sans", sans-serif;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 /*# sourceMappingURL=body.css.map */

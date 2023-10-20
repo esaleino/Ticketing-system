@@ -1,4 +1,5 @@
 <?php
+include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "contact";
 $style_forms = true;
 $js = array("contact.js", "contact_listeners.js");

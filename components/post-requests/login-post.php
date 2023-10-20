@@ -4,7 +4,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
     include HANDLERS_PATH . "login-handler.php";
-    include COMPONENTS_PATH . "db-connect.php";
+    include QUERIES_PATH . "db-connect.php";
+    session_set_cookie_params(900);
     session_start();
     $conn = DbConnect::createConnection();
     $msg = login_handling($_POST, $conn);
@@ -19,7 +20,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $_SESSION['loggedin'] = true;
         $_SESSION['user'] = $msg['user'];
-        session_set_cookie_params(900);
         $url = PAGES . 'user.php';
         http_response_code(200);
         $response = array(
@@ -34,6 +34,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
 else
 {
     http_response_code(405);
-    echo 'Method not allowed.';
+    header('Content-Type: application/json');
+    $response['message'] = 'Method not allowed.';
+    echo json_encode($response);
 }
 ?>

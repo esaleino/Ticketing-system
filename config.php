@@ -17,6 +17,7 @@ $pages = $baseUrl . '/pages/';
 $assets = $baseUrl . '/assets/';
 $getRequests = $baseUrl . '/components/get-requests/';
 $postRequests = $baseUrl . '/components/post-requests/';
+$settings = $pages . '/settings/';
 
 // set paths for components, pages and subfolders of components
 $componentsPath = $_SERVER['DOCUMENT_ROOT'] . '/components/';
@@ -37,6 +38,8 @@ define("POST_REQUESTS", $postRequests);
 define("CSS", $css_url);
 define("JS", $js_url);
 define("IMG", $img_url);
+define("SETTINGS", $settings);
+
 
 // define path constants
 define("COMPONENTS_PATH", $componentsPath);
@@ -50,4 +53,5 @@ define("IMG_PATH", $assetsPath . 'images/');
 define("HANDLERS_PATH", $componentsPath . '/handlers/');
 define("VALIDATIONS_PATH", $componentsPath . '/validations/');
 define("PRIVATE_PATH", $_SERVER['DOCUMENT_ROOT'] . '/private/');
+define('ROLES_PATH', PRIVATE_PATH . 'roles/');
 ?>

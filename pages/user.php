@@ -2,8 +2,6 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "user";
-var_dump($_SESSION);
-
 if ($_SESSION['loggedin'] == true)
 {
     $user = $_SESSION['user'];
@@ -14,7 +12,7 @@ if ($_SESSION['loggedin'] == true)
     else
     {
         include COMPONENTS_PATH . "user-header.php";
-        include PRIVATE_PATH . $user['role'] . ".php";
+        include ROLES_PATH . $user['role'] . ".php";
     }
 }
 else

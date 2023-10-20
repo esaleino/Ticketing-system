@@ -9,7 +9,7 @@ if (isset($js))
 {
     foreach ($js as $script)
     {
-        echo '<script type="module" src="' . $Paths['scripts'] . $script . '"></script>';
+        echo '<script type="module" src="' . JS . $script . '"></script>';
     }
 }
 ?>
