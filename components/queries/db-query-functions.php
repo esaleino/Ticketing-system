@@ -103,4 +103,18 @@ function getUser($user, $conn)
     }
     return false;
 }
+function addCompanyTicket_reg($data, $conn)
+{
+    global $add_company_reg_ticket;
+    $stmt = $conn->prepare($add_company_reg_ticket);
+    $hash = password_hash($data['m-pass'], PASSWORD_DEFAULT);
+    $stmt->bind_param("sssssssss", $data['company_name'], $data['contact_name'], $data['contact_email'], $data['contact_phone'], $data['c-reason'], $data['m-email'], $data['m-uname'], $hash, $data['c-msg']);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0)
+    {
+        return ["message" => "Registration ticket submitted successfully.", "ticket_id" => $stmt->insert_id];
+    }
+    $stmt->close();
+    return ["message" => "Registration submission failed."];
+}
 ?>

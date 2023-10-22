@@ -47,7 +47,7 @@ footer {
   width: 0;
   height: 100%;
   overflow: hidden;
-  transition: 0.5s;
+  transition: $transition_time;
 }
 .sidebar-a {
   padding: 1rem;

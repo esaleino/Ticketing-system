@@ -61,7 +61,7 @@ footer {
   width: 0;
   height: 100%;
   overflow: hidden;
-  transition: 0.5s;
+  transition: 2s;
 }
 
 .sidebar-a {

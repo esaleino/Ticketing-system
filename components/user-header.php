@@ -2,9 +2,18 @@
 
 <head>
     <?php
-    echo '<link rel="stylesheet" href="' . CSS . 'usernav.css' . '" />';
-    echo '<link rel="stylesheet" href="' . CSS . 'body.css' . '" />';
-    echo "<link rel='stylesheet' href='" . CSS . "user.css' />";
+    if (isset($css))
+    {
+        array_push($css, "usernav.css", "body.css", "user.css");
+    }
+    else
+    {
+        $css = ["usernav.css", "body.css", "user.css"];
+    }
+    foreach ($css as $cssFile)
+    {
+        echo '<link rel="stylesheet" href="' . CSS . $cssFile . '" />';
+    }
     $js[] = "usernav.js";
 
     $linksGeneric = [

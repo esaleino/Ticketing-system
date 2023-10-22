@@ -5,6 +5,7 @@ $style_forms = true;
 $js = array("contact.js", "contact_listeners.js");
 $components_path = "../components/";
 include $components_path . "header.php";
+echo "<script>var contactPost = '" . POST_REQUESTS . "contact-post.php';</script>";
 ?>
 <div class="form-container">
     <div class="form-box">
@@ -13,6 +14,7 @@ include $components_path . "header.php";
             <button id="company-tab" class="inactive-tab"> Companies</button>
         </div>
         <form id="individual-form" class="form-content active-form">
+            <input type="hidden" name="form_source" value="individual">
             <div class="in-form-row">
                 <div class="column">
                     <div class="input-container">
@@ -44,42 +46,80 @@ include $components_path . "header.php";
                     </div>
                 </div>
             </div>
+            <div class="form-submit">
+                <button class="s-button">Submit</button>
+            </div>
         </form>
         <form id="company-form" class="form-content">
+            <input type="hidden" name="form_source" value="company">
             <div class="form-row">
                 <div class="input-container">
-                    <label class="l-text" for="input-1">Company name</label>
-                    <input class="input-box" placeholder="Company name" type="text" id="input-1" />
+                    <label class="l-text" for="company_name">Company Name</label>
+                    <input class="input-box" placeholder="Company name" type="text" name="company_name"
+                        id="company_name" />
                 </div>
                 <div class="input-container">
-                    <label class="l-text" for="input-2">Contact name</label>
-                    <input class="input-box" placeholder="Contact name" type="text" id="input-2" />
+                    <label class="l-text" for="contact_name">Contact Name</label>
+                    <input class="input-box" placeholder="Contact name" type="text" name="contact_name"
+                        id="contact_name" />
                 </div>
             </div>
             <div class="form-row">
                 <div class="input-container">
-                    <label class="l-text" for="input-3">Email</label>
-                    <input class="input-box" placeholder="Email" type="email" id="input-3" />
+                    <label class="l-text" for="contact_email">Contact Email</label>
+                    <input class="input-box" placeholder="Email" type="email" name="contact_email" id="contact_email" />
                 </div>
                 <div class="input-container">
-                    <label class="l-text" for="input-4">Phone</label>
-                    <input class="input-box" placeholder="Phone" type="tel" id="input-4" />
+                    <label class="l-text" for="contact_phone">Phone</label>
+                    <input class="input-box" placeholder="Phone" type="tel" name="contact_phone" id="contact_phone" />
                 </div>
-                <div class="input-container">
-                    <label class="l-text" for="input-5">Reason</label>
-                    <select class="input-box" id="input-5">
-                        <option value="1">General</option>
-                        <option value="2">Feedback</option>
-                        <option value="3">Complaint</option>
-                        <option value="4">Other</option>
-                    </select>
+            </div>
+            <div class="form-row">
+                <label class="l-text" for="company-reason">Reason</label>
+                <select class="input-box" name="c-reason" id="company-reason">
+                    <option value="registration">Registration</option>
+                    <option value="feedback">Feedback</option>
+                    <option value="complaint">Complaint</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div id="registration-content">
+                <div class="form-row">
                     <div class="input-container">
-                        <label class="l-text" for="input-6">Message</label>
-                        <textarea class="input-box" placeholder="Message" rows="10" type="text" id="input-6"></textarea>
+                        <label class="l-text" for="m-uname">Username for management</label>
+                        <input class="input-box" placeholder="Username" type="text" name="m-uname" id="m-uname"
+                            required />
+                    </div>
+                    <div class="input-container">
+                        <label class="l-text" for="m-email">Email for management</label>
+                        <input class="input-box" placeholder="Email" type="email" name="m-email" id="m-email"
+                            required />
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-container">
+                        <label class="l-text" for="m-pass">Password</label>
+                        <input class="input-box" placeholder="Password" type="password" name="m-pass" id="m-pass"
+                            required />
+                    </div>
+                    <div class="input-container">
+                        <label class="l-text" for="m-cpass">Confirm password</label>
+                        <input class="input-box" placeholder="Confirm password" type="password" name="m-cpass"
+                            id="m-cpass" required />
                     </div>
                 </div>
             </div>
-
+            <div id="other-content" style="display: none">
+            </div>
+            <div class="form-row">
+                <label class="l-text" for="c-desc">Message</label>
+                <textarea class="input-box" placeholder="Message" rows="10" type="text" name="c-msg" id="c-msg"
+                    required></textarea>
+            </div>
+            <div class="form-submit">
+                <button type="submit" class="s-button">Submit</button>
+            </div>
         </form>
     </div>
 </div>

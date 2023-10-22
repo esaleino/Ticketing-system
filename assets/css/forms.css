@@ -125,8 +125,8 @@
 .form-container .s-button {
   display: inline-flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: center;
+  align-items: center;
   padding: 10px 10px 10px 10px;
   position: relative;
   flex: 0 0 auto;
@@ -160,6 +160,11 @@
   width: 80%;
   margin: auto;
 }
+.form-container .form-content .form-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .form-container .active-form {
   display: block;
 }
@@ -181,7 +186,7 @@
     justify-content: space-between;
   }
   .in-form-row .input-container {
-    flex-basis: calc(50% - 10px);
+    flex-basis: calc(50% - 20px);
     padding-left: 10px;
     padding-right: 10px;
     justify-content: center;

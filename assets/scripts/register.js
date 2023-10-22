@@ -1,10 +1,91 @@
 import { formValidation, addErrorLabels, onChange } from './validations.js';
+import { formBuildHandler } from './form-builder.js';
+const formDefinitions = {
+  target: 'main-content',
+  id: 'registration-form',
+  title: 'Registration Form',
+  rows: [
+    [
+      {
+        id: 'uname',
+        label: 'Username',
+        type: 'text',
+        required: true,
+        tag: 'input',
+      },
+    ],
+    [
+      {
+        id: 'fname',
+        label: 'First Name',
+        type: 'text',
+        required: true,
+        tag: 'input',
+      },
+      {
+        id: 'lname',
+        label: 'Last Name',
+        type: 'text',
+        required: true,
+        tag: 'input',
+      },
+    ],
+    [
+      {
+        id: 'email',
+        label: 'Email',
+        type: 'email',
+        required: true,
+        tag: 'input',
+      },
+      {
+        id: 'phone',
+        label: 'Phone',
+        type: 'tel',
+        required: true,
+        tag: 'input',
+      },
+    ],
+    [
+      {
+        id: 'pass',
+        label: 'Password',
+        type: 'password',
+        required: true,
+        tag: 'input',
+      },
+      {
+        id: 'cpass',
+        label: 'Confirm Password',
+        type: 'password',
+        required: true,
+        tag: 'input',
+      },
+    ],
+    [
+      {
+        id: 'company_name',
+        label: 'Company Name',
+        type: 'text',
+        required: true,
+        tag: 'select',
+      },
+      {
+        id: 'company_code',
+        label: 'Company Code',
+        type: 'password',
+        required: true,
+        tag: 'input',
+      },
+    ],
+  ],
+};
+window.addEventListener('load', getForms());
 const submitButton = document.getElementById('s-button');
 const form = document.getElementById('registration-form');
 const errorFields = document.getElementsByClassName('error-field');
 const inputElements = form.querySelectorAll('input');
 const companySelect = document.getElementById('company_name');
-
 companies.forEach((company) => {
   const option = document.createElement('option');
   option.value = company;
@@ -85,3 +166,15 @@ document
     field_phone.value = '123456789';
     field_company.value = 'CompanyName';
   });
+
+function getForms() {
+  let form = formBuildHandler(formDefinitions);
+  let content = document.getElementById(formDefinitions.target);
+  let testButton = document.createElement('button');
+  testButton.type = 'button';
+  testButton.innerHTML = 'Test';
+  testButton.classList.add('s-button');
+  testButton.id = 'test_button';
+  form.appendChild(testButton);
+  content.appendChild(form);
+}

@@ -1,3 +1,4 @@
+import { submitForm } from './contact.js';
 const individualTab = document.getElementById('individual-tab');
 const companyTab = document.getElementById('company-tab');
 const individualForm = document.getElementById('individual-form');
@@ -6,6 +7,7 @@ const reasonSelect = document.getElementById('reason');
 const companyNameInput = document.getElementById('r_company');
 const messageTextarea = document.getElementById('message');
 const charCountSpan = document.getElementById('char-count');
+const companyReason = document.getElementById('company-reason');
 
 individualTab.addEventListener('click', () => {
   individualForm.classList.add('active-form');
@@ -33,8 +35,25 @@ reasonSelect.addEventListener('change', function () {
   }
 });
 
+companyReason.addEventListener('change', function () {
+  let otherContent = document.getElementById('other-content');
+  let registrationContent = document.getElementById('registration-content');
+  if (companyReason.value === 'registration') {
+    registrationContent.style.display = 'block';
+    otherContent.style.display = 'none';
+  } else {
+    registrationContent.style.display = 'none';
+    otherContent.style.display = 'block';
+  }
+});
+
 messageTextarea.addEventListener('input', function () {
   const messageContent = messageTextarea.value;
   const charCount = messageContent.length;
   charCountSpan.textContent = charCount + '/2000 characters';
+});
+
+companyForm.addEventListener('submit', function (e) {
+  e.preventDefault();
+  submitForm(companyForm);
 });

@@ -2,6 +2,7 @@
 session_start();
 include $_SERVER['DOCUMENT_ROOT'] . "/config.php";
 $page = "user";
+$css[] = "forms.css";
 if ($_SESSION['loggedin'] == true)
 {
     $user = $_SESSION['user'];
