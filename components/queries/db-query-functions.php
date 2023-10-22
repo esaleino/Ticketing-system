@@ -32,8 +32,23 @@ function registerUser($data, $conn, $c_id)
 {
     global $register_user;
     $stmt = $conn->prepare($register_user);
-    $hash = password_hash($data['pass'], PASSWORD_DEFAULT);
-    $fullName = $data['fname'] . " " . $data['lname'];
+    if (isset($data['pass']))
+    {
+        $hash = password_hash($data['pass'], PASSWORD_DEFAULT);
+    }
+    else
+    {
+        $hash = $data['hash'];
+    }
+    if (isset($data['fname']) && isset($data['lname']))
+    {
+
+        $fullName = $data['fname'] . " " . $data['lname'];
+    }
+    else
+    {
+        $fullName = $data['full_name'];
+    }
     $stmt->bind_param("ssssi", $data['uname'], $data['email'], $fullName, $hash, $c_id);
     $stmt->execute();
     if ($stmt->affected_rows > 0)
@@ -103,18 +118,105 @@ function getUser($user, $conn)
     }
     return false;
 }
+function getCompanyTicket_reg($data, $conn)
+{
+    global $get_company_reg_ticket;
+    $stmt = $conn->prepare($get_company_reg_ticket);
+    $stmt->bind_param("s", $data['company_name']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return ['result' => true, "id" => $result->fetch_assoc()['id']];
+    }
+    return ['result' => false];
+}
 function addCompanyTicket_reg($data, $conn)
 {
     global $add_company_reg_ticket;
+    $status = getCompanyTicket_reg($data, $conn);
+    if ($status['result'])
+    {
+        return ["message" => "Registration ticket already exists.", "ticket_id" => $status['id'], "status" => "error"];
+    }
     $stmt = $conn->prepare($add_company_reg_ticket);
     $hash = password_hash($data['m-pass'], PASSWORD_DEFAULT);
     $stmt->bind_param("sssssssss", $data['company_name'], $data['contact_name'], $data['contact_email'], $data['contact_phone'], $data['c-reason'], $data['m-email'], $data['m-uname'], $hash, $data['c-msg']);
     $stmt->execute();
     if ($stmt->affected_rows > 0)
     {
-        return ["message" => "Registration ticket submitted successfully.", "ticket_id" => $stmt->insert_id];
+        return ["message" => "Registration ticket submitted successfully.", "ticket_id" => $stmt->insert_id, "status" => "success"];
     }
     $stmt->close();
-    return ["message" => "Registration submission failed."];
+    return ["message" => "Registration submission failed.", "status" => "error"];
+}
+function getAdminTickets($conn)
+{
+    global $get_admin_tickets;
+    $stmt = $conn->prepare($get_admin_tickets);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    $tickets = [];
+    while ($row = $result->fetch_assoc())
+    {
+        array_push($tickets, $row);
+    }
+    return $tickets;
+}
+function addCompany($data, $conn)
+{
+    global $add_company;
+    $stmt = $conn->prepare($add_company);
+    $stmt->bind_param("ss", $data['company_name'], $data['regKey']);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0)
+    {
+        return ["message" => "Company added successfully.", "status" => "success", "c_id" => $stmt->insert_id];
+    }
+    $stmt->close();
+    return false;
+}
+function getHash($id, $conn)
+{
+    global $get_hash;
+    $stmt = $conn->prepare($get_hash);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return $result->fetch_assoc()['company_password_hash'];
+    }
+    return false;
+}
+function getCompany($name, $conn)
+{
+    global $get_company;
+    $stmt = $conn->prepare($get_company);
+    $stmt->bind_param("s", $name);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $stmt->close();
+    if ($result->num_rows > 0)
+    {
+        return ["status" => "found", "result" => $result->fetch_assoc()];
+    }
+    return false;
+}
+function closeAdminTicket($ticket_id, $conn)
+{
+    global $close_admin_ticket;
+    $stmt = $conn->prepare($close_admin_ticket);
+    $stmt->bind_param("i", $ticket_id);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0)
+    {
+        return true;
+    }
+    $stmt->close();
+    return false;
 }
 ?>

@@ -54,4 +54,5 @@ define("HANDLERS_PATH", $componentsPath . '/handlers/');
 define("VALIDATIONS_PATH", $componentsPath . '/validations/');
 define("PRIVATE_PATH", $_SERVER['DOCUMENT_ROOT'] . '/private/');
 define('ROLES_PATH', PRIVATE_PATH . 'roles/');
+define('PRIVATE_GET', $componentsPath . 'private/');
 ?>

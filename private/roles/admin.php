@@ -1,5 +1,8 @@
 <?php
 array_push($js, "admin.js", "dashboard.js");
+include PRIVATE_GET . "get-tickets.php";
+
+echo '<script>var addCompanyPost = "' . POST_REQUESTS . "company-post.php?api_key=" . getenv('API_KEY_ADMIN') . '";</script>';
 ?>
 <div class="main-content" id="main-content">
     <div class="dashboard">
@@ -30,7 +33,7 @@ array_push($js, "admin.js", "dashboard.js");
             </div>
         </div>
         <div class="content">
-            <div id="add-company-content" name="content-div" class="form-content">Desktop and Mobile Add Company Content
+            <div id="add-company-content" name="content-div" class="form-content">
             </div>
             <div id="verify-users-content" name="content-div" class="form-content">Desktop and Mobile Verify Users
                 Content</div>

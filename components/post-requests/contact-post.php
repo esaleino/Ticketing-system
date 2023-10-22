@@ -10,6 +10,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     header('Content-Type: application/json');
     $msg = contactHandling($_POST, $conn);
     $conn->close();
+    if ($msg['status'] === "success")
+    {
+        http_response_code(200);
+    }
+    else
+    {
+        http_response_code(400);
+    }
     echo json_encode($msg);
 }
 else
