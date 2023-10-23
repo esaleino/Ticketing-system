@@ -32,6 +32,7 @@ function registerUser($data, $conn, $c_id)
 {
     global $register_user;
     $stmt = $conn->prepare($register_user);
+    $token = bin2hex(random_bytes(32));
     if (isset($data['pass']))
     {
         $hash = password_hash($data['pass'], PASSWORD_DEFAULT);
@@ -49,7 +50,7 @@ function registerUser($data, $conn, $c_id)
     {
         $fullName = $data['full_name'];
     }
-    $stmt->bind_param("ssssi", $data['uname'], $data['email'], $fullName, $hash, $c_id);
+    $stmt->bind_param("ssssis", $data['uname'], $data['email'], $fullName, $hash, $c_id, $token);
     $stmt->execute();
     if ($stmt->affected_rows > 0)
     {
@@ -211,6 +212,19 @@ function closeAdminTicket($ticket_id, $conn)
     global $close_admin_ticket;
     $stmt = $conn->prepare($close_admin_ticket);
     $stmt->bind_param("i", $ticket_id);
+    $stmt->execute();
+    if ($stmt->affected_rows > 0)
+    {
+        return true;
+    }
+    $stmt->close();
+    return false;
+}
+function verifyUser($token, $conn)
+{
+    global $verify_user;
+    $stmt = $conn->prepare($verify_user);
+    $stmt->bind_param("s", $token);
     $stmt->execute();
     if ($stmt->affected_rows > 0)
     {

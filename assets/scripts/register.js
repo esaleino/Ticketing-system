@@ -73,7 +73,7 @@ const formDefinitions = {
       {
         id: 'company_code',
         label: 'Company Code',
-        type: 'password',
+        type: 'text',
         required: true,
         tag: 'input',
       },

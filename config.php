@@ -39,6 +39,7 @@ define("CSS", $css_url);
 define("JS", $js_url);
 define("IMG", $img_url);
 define("SETTINGS", $settings);
+define("HANDLERS", $components . 'handlers/');
 
 
 // define path constants

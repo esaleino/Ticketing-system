@@ -16,15 +16,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
             'message' => $msg['message']
         );
     }
-    else
+    else if ($msg['user']['email_verified'] !== 0)
     {
         $_SESSION['loggedin'] = true;
         $_SESSION['user'] = $msg['user'];
-        $url = PAGES . 'user.php';
+        $url = PAGES . 'admin.php';
         http_response_code(200);
         $response = array(
             'message' => $msg['user'],
             'redirect' => $url
+        );
+    }
+    else
+    {
+        http_response_code(400);
+        $response = array(
+            'message' => "Email not verified"
         );
     }
     header('Content-Type: application/json');
