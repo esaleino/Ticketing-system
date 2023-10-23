@@ -1,6 +1,6 @@
 <footer>
     <div class="left">
-        <p>&copy Esa Leino 2023
+        <p>&copy 2023 Ticketing-system
         </p>
     </div>
 </footer>
