@@ -5,7 +5,6 @@ $style_forms = true;
 $js = ["register.js", "form-builder.js"];
 include COMPONENTS_PATH . "header.php";
 $registerPost = POST_REQUESTS . 'registration-post.php';
-var_dump($registerPost);
 echo '<script>var registerPost = "' . $registerPost . '";</script>';
 $handleUrl = GET_REQUESTS . 'companies-get.php?api_key=' . getenv('API_KEY_ADMIN');
 $ch = curl_init($handleUrl);
