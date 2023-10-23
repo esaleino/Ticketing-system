@@ -57,3 +57,26 @@ companyForm.addEventListener('submit', function (e) {
   e.preventDefault();
   submitForm(companyForm);
 });
+
+const testButton = document.getElementById('test_button');
+testButton.addEventListener('click', function () {
+  const cname = document.getElementById('company_name');
+  const conname = document.getElementById('contact_name');
+  const conemail = document.getElementById('contact_email');
+  const conphone = document.getElementById('contact_phone');
+  const cuser = document.getElementById('m-uname');
+  const cpass = document.getElementById('m-pass');
+  const ccpass = document.getElementById('m-cpass');
+  const cemail = document.getElementById('m-email');
+  const cmsg = document.getElementById('c-msg');
+
+  cname.value = 'Test Company';
+  conname.value = 'Test Name';
+  conemail.value = 'testmail@contact.com';
+  conphone.value = '123456789';
+  cuser.value = 'testuser';
+  cpass.value = '123456789';
+  ccpass.value = '123456789';
+  cemail.value = 'testmail@company.com';
+  cmsg.value = 'Test message';
+});

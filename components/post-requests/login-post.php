@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
     {
         $_SESSION['loggedin'] = true;
         $_SESSION['user'] = $msg['user'];
-        $url = PAGES . 'admin.php';
+        $url = PAGES . 'user.php';
         http_response_code(200);
         $response = array(
             'message' => $msg['user'],

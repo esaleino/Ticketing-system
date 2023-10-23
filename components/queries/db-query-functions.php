@@ -205,7 +205,7 @@ function getCompany($name, $conn)
     {
         return ["status" => "found", "result" => $result->fetch_assoc()];
     }
-    return false;
+    return ["status" => "not found"];
 }
 function closeAdminTicket($ticket_id, $conn)
 {

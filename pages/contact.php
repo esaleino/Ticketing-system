@@ -121,6 +121,7 @@ echo "<script>var contactPost = '" . POST_REQUESTS . "contact-post.php';</script
                 <button type="submit" class="s-button">Submit</button>
             </div>
         </form>
+        <button type="button" class="s-button" id="test_button">Test</button>
     </div>
 </div>
 <?php

@@ -17,7 +17,14 @@ function companyTickets_reg($data)
             $res[] = $ticket;
         }
     }
-    return $res;
+    if (isset($res))
+    {
+        return $res;
+    }
+    else
+    {
+        return ["No open tickets"];
+    }
 }
 
 // Load data to js
